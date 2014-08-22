@@ -19,7 +19,6 @@
 @property (nonatomic, strong) UIView *view;
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) UIWindow *originalWindow;
-@property (nonatomic, assign) BOOL showStatusBar;
 
 @end
 
@@ -106,12 +105,9 @@ static MMAppSwitcher *_sharedInstance;
     [self.view removeFromSuperview];
     self.view = nil;
     self.window.hidden = YES;
-    [[UIApplication sharedApplication] setStatusBarHidden:self.showStatusBar];
 }
 
 - (void)appDidEnterBackground {
-     self.showStatusBar = [[UIApplication sharedApplication] isStatusBarHidden];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [self loadCard];
     self.window.hidden = NO;
 }
